@@ -29,4 +29,65 @@
         \item \textbf{Office:} EIT-3135
       \end{itemize}
 
+  \section{Introduction}
+
+    \subsection{What is Artificial Intelligence (AI)?}
+      Intelligence is the ability to acquire and apply knowledge and skills. AI is the science of creating intelligent machines,
+      including intelligent computer programs. Sample applications include visual perception, speech recognition and various
+      forms of decision-making
+
+      \subsubsection{AI vs Machine Learning vs Deep Learning vs Data Science}
+        The above terms are often thrown around almost interchangealbly, but they refer to different things. Deep learning is
+        a type of machine learning, which is a type of AI. Data science is a separate field that has some overlap with these
+        three other concepts.
+
+      \subsubsection{Inspiration from Nature}
+        Some of the inspirations for intelligent systems come from the natural world. Sample inspirations include ant path-finding,
+        bird flocking, and fish schooling.
+
+    \subsection{Thinking Rationally vs Behaving Rationally}
+      In rational thinking, logical systems are used to achieve goals via inferencing. It can be hard to represent informal knowledge,
+      and not all problems can be solved through such methods (e.g. problems with uncertainty).
+
+      In rational behavior, a perceives its environment and acts to achieve goals according to some set of beliefs. This is a more
+      general approach than inferencing, and actions taken to achieve a goal may not necessarily be optimal or ``correct'', but
+      may be an acceptable solution anyways.
+      
+    \subsection{Swarm Intelligence}
+      Swarm intelligence is an AI technique that builds systems based on the collective behavior of decentralized, self-organized units.
+      There are no centralized control structures, with agents only interacting with each other and the environment.
+
+    \subsection{Intelligent Agents}
+      An agent is something that senses its environment and acts on the collected information. A rational agent acts in a way that is
+      expected to maximize performance on the basis of perceptual history and built-in knowledge. Types of agents include:
+      \begin{itemize}
+        \item \textbf{Simple Reflex Agents:} Follow a lookup-table approach; needs fully observable environment
+        \item \textbf{Model-Based Reflex Agents:} Add state information to handle partially observable environments
+        \item \textbf{Goal-Based Agents:} Add concept of goals to help choose actions
+        \item \textbf{Utility-Based Agents:} Add utility to decide ``good'' or ``'bad'' when faced with conflicting goals
+        \item \textbf{Learning Agents:} Add ability to learn from experience to improve performance
+      \end{itemize}
+
+    \subsection{Environments}
+      The environments in which agents operate influence the design of the agents. Types of environments include:
+      \begin{itemize}
+        \item \textbf{Fully vs Partially Observable:} In fully observable environments, sensors can detect all aspects
+        relevant to choice of action. This is not the case in partially observable environments, which may exist because
+        of missing information or inaccurate sensors.
+        \item \textbf{Deterministic vs Stochastic:} Deterministic environments are only influenced by their current
+        state and the next action executed by the agent; otherwise, the environment is stochastic.
+        \item \textbf{Episodic vs Sequential:} In episodic environments, the choice of action in each episode does not
+        depend on previous episodes, unlike in sequential environments, where an agent needs to ``think ahead''.
+        \item \textbf{Static vs Dynamic:} Environments where the state may change while the agent is deliberating are
+        considered dynamic; other environments are considered static.
+        \item \textbf{Discrete vs Continuous:} A discrete/continuous distinction can be applied to various aspects of
+        an environment, including the way time flow is handled and to the actions of the agent.
+        \item \textbf{Single vs Multi Agent}
+      \end{itemize}
+
+    \subsection{Adaptive and Cooperative Algorithms}
+      Adaptive algorithms are able to change their behavior as they are run. Cooperative algorithms algorithms work
+      together to solve a joint problem, communicating either directly or indirectly with one another.
+
+
 \end{document}
