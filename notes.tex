@@ -100,5 +100,41 @@
       Adaptive algorithms are able to change their behavior as they are run. Cooperative algorithms algorithms work
       together to solve a joint problem, communicating either directly or indirectly with one another.
 
+  \section{Search Problem Formulation}
+    The first step in solving a search problem lies in formulation. Sources of potential complexity in formalizing and
+    solving real-world search problems include multimodality, lack of a mathematical model, non-differentiability, and
+    a combinatoric or distributed nature.
+
+    \subsection{Well-Structured vs Ill-Structured Problems}
+      In well-structured problems, the existing and end state are well-defined, and so are the actions that can be taken
+      to change state. In ill-structured problems, the existing state is well-defined, but the end state and actions to
+      change state are typically undefined.
+
+    \subsection{Optimization Problems}
+      Optimization problems concern finding the ``best'' solution from a set of solutions subject to a set of constraints.
+      Optimization techniques are search methods where the goal is to find a solution to an optimization problem. Optimization
+      techniques can be divided into exact algorithms, where an optimal solution is found but often at a very high computational
+      cost, and approximate solutions, where a near-optimal solution is found at a far lower computational cost.
+
+      \subsubsection{Approximation Methods}
+        Due to their relatively low computational costs, approximation methods are often preferred for solving problems of a
+        combinatorial nature where heuristics can be applied to find near-optimal solutions. Approaches to approximation can
+        be divided into constructive methods, where a solution is built up one component at a time, and local search methods,
+        where actions are iteratively applied to some initial solution to attempt to improve it.
+
+    \subsection{Goal and Problem Formulation}
+      In goal formulation, decisions are made on which aspects of a problem are important and which can be ignored. Problem
+      formulation concerns determining how to manipulate these important aspects. Goal formulation followed by problem
+      formulation yields the following information:
+      \begin{itemize}
+        \item \textbf{State space:} Complete or partial configuration of a problem
+        \item \textbf{Initial state:} State in which search begins
+        \item \textbf{Goal state:} State in which search ends
+        \item \textbf{Action set:} Set of possible transitions between states
+        \item \textbf{Cost:} Can be used to compare various solutions
+      \end{itemize}
+
+      Generally speaking, a closed-world assumption can be followed, meaning that each state is a complete description of the world.
+      Environments in closed-world problems are typically fully observable, deterministic, sequential, static, and discrete.
 
 \end{document}
