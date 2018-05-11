@@ -146,4 +146,85 @@
         \item \textbf{Space complexity:} Maximum number of nodes stored in memory
       \end{itemize}
 
+  \section{Graph Search Algorithms}
+
+    \subsection{Search Tree Terminology}
+      \begin{itemize}
+        \item \textbf{Node:} Represents a state in a search problem
+        \item \textbf{Edge:} Represents a transition between states
+        \item \textbf{Branching factor (b):} Maximum number of child nodes extending from a parent node
+        \item \textbf{Maximum depth (m):} Number edges in the shortest path from the root node to the furthest node.
+        Variable $d$ is used to represent the depth of the solution.
+      \end{itemize}
+
+    \subsection{Generic Search}
+      Given a graph, generic search algorithms repeatedly pick a node and expand a search to its children. Different algorithms
+      differ in how they select the next node to consider. Many algorithms maintain some queue-like structure for storing nodes
+      on a fringe to be expanded.
+
+    \subsection{Uninformed vs Informed Search}
+      Uninformed search algorithms do not have any idea of the direction of the goal node, any simply expand nodes until they
+      reach the goal. Informed search algorithms apply some domain knowledge to determine the general direction of goal nodes.
+      These informed algorithms are also known as ``heuristic search'' algorithms.
+
+    \subsection{Breadth-first Search}
+      Breadth-first search (BFS) operates by expanding the shallowest unexpanded nodes, storing the fringe to be expanded in a FIFO
+      queue.
+
+      \subsubsection{Properties}
+        \begin{itemize}
+          \item Complete
+          \item Optimal if cost is equal to depth, otherwise may be non-optimal
+          \item Time complexity $O(b^{d+1})$
+          \item Space complexity $O(b^{d+1})$
+        \end{itemize}
+
+    \subsection{Uniform Cost Search}
+      Uniform cost search operates similarly to BFS, but instead of expanding the shallowest unexpanded node, expands the lowest cost
+      unexpanded node. Note that BFS is a variant of uniform cost search where all edges have uniform cost.
+
+      \subsubsection{Properties}
+        Let $C$ be the cost of shortest path to the goal node, and other actions have a minimum cost of $\epsilon$.
+        \begin{itemize}
+          \item Complete
+          \item Optimal
+          \item Time complexity $O(b^{\frac{C}{\epsilon} + 1})$
+          \item Space complexity $O(b^{\frac{C}{\epsilon} + 1})$
+        \end{itemize}
+
+    \subsection{Depth-first Search}
+      Depth-first search (DFS) operates by expanding the deepest unexpanded nodes, storing nodes to be expanded in a LIFO stack.
+
+      \subsubsection{Properties}
+        \begin{itemize}
+          \item May be incomplete in infinite-depth search spaces, or in spaces with loops
+          \item Non-optimal
+          \item Time complexity $O(b^m)$, note that $m$ may be much larger than $d$.
+          \item Space complexity $O(bm)$
+        \end{itemize}
+
+    \subsection{Depth-limited Search}
+      Depth-limited search operates like DFS but imposes a maximum depth on the search.
+
+      \subsubsection{Properties}
+        Let $l$ be the maximum depth of the search.
+        \begin{itemize}
+          \item Complete if there is a solution with depth $d \leq m$.
+          \item Non-optimal
+          \item Time complexity $O(b^l)$
+          \item Space complexity $O(bl)$
+        \end{itemize}
+
+    \subsection{Iterative Deepening Search}
+      Iterative deepening search operates by repeating a depth-limited search with a larger and larger
+      search depth $l$ until a solution if found.
+
+      \subsubsection{Properties}
+        \begin{itemize}
+          \item Complete if $b$ is finite.
+          \item Guaranteed to return shallowest goal (similar to BFS), so optimal if cost is equal to depth
+          \item Time complexity $O(b^d)$, note that $m$ may be much larger than $d$.
+          \item Space complexity $O(bd)$
+        \end{itemize}
+
 \end{document}
