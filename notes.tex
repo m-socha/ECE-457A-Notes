@@ -228,4 +228,90 @@
           \item Space complexity $O(bd)$
         \end{itemize}
 
+  \section{Informed Search Strategies}
+    Informed search algorithms apply domain knowledge in a problem to search the ``most promising'' branches first. This can lead to
+    finding solutions more quickly, or finding solutions with lower costs than uninformed search algorithms.
+
+    \subsection{Heuristics}
+      The domain knowledge used in the problem is applied in the form of a heuristic function, which gives an estimate to the distance
+      from the goal. Heuristics are often applied as a ``commonsense'' technique without many theoretical guarantees.
+
+      A heuristic function $h(n)$ can be used to estimate the ``goodness'' of node n. In general:
+      \begin{itemize}
+        \item $h(n) \geq 0 \forall n$
+        \item $h(n) = 0$ means n is a goal node.
+        \item $h(n) = \infty$ means n is a dead end that does not lead to a goal.
+      \end{itemize}
+
+      A heuristic function is considered admissible (or optimistic) if it never overestimates the cost of reaching the goal.
+      Admissible heuristics can often be derived by relaxing the rules to a problem.
+
+    \subsection{Strong vs Weak Methods}
+      Strong methods are designed a address a particular type of problem, while weak methods are general approaches that can be applied
+      to many types of problems. Because of the limited way in which domain-specific information is used to solve a problem with heuristic
+      search, it is known as a weak method, since a strong method would apply more powerful domain-specific heuristics. Other examples of
+      weak methods include:
+      \begin{itemize}
+        \item \textbf{Means-end analysis} - A strategy where a representation is formed for the current and goal state, and actions are
+        analyzed that shrink the difference between the two.
+        \item \textbf{Space splitting} - A strategy where possible solutions to a problem are listed, and then classes of these solutions
+        are ruled out to shrink the search space.
+        \item \textbf{Subgoaling} - A strategy where a large problem is split into independent smaller ones.
+      \end{itemize}
+
+    \subsection{Best-first Search}
+      Best-first search operates similarly to uniform cost search, but places nodes in a priority queue such that nodes in the queue are
+      ordered by their values of $h(n)$.
+
+      \subsubsection{Properties}
+        \begin{itemize}
+          \item Not complete - can get stuck in loops
+          \item Non-optimal
+          \item Time complexity $O(b^m)$, but good heuristic can yield major improvements
+          \item Space complexity $O(b^m)$
+        \end{itemize}
+
+    \subsection{Beam Search}
+      Beam search is an optimization of best-first search that reduces its memory requirement. Instead of expanding all nodes on a fringe,
+      beam search only expands the $\beta$ (beam width) with the lowest values of $h(n)$.
+
+      \subsubsection{Properties}
+        \begin{itemize}
+          \item Not complete
+          \item Non-optimal
+          \item Time complexity $O(\beta b)$
+          \item Space complexity $O(\beta b)$
+          \item Not admissible
+        \end{itemize}
+
+    \subsection{A* Search}
+      A function $g(n) = g(n) + h(n)$ can be used to give the total estimated cost of a solution, where $g(n)$ is the cost from the start to n,
+      and $h(n)$ is the heuristic function for node n. However, an algorithm based on this is not complete if $h(n)$ can be infinite, and is
+      not admissible.
+
+      A* search is a variation on the above algorithm with the constraint $h(n) \leq h^*(n)$, where $h^*(n)$ is the actual minimal path cost from
+      n to a goal. This constraint makes A* search complete whenever the branching factor is finite and there is a fixed positive cost, and also
+      makes it admissible.
+
+      Some properties of A* search include:
+      \begin{itemize}
+        \item \textbf{Perfect heuristic:} If $h(n) = h^*(n)$, then only nodes on the optimal solution are expanded.
+        \item \textbf{Null heuristic:} If $h(n) = 0$, then A* acts like uniform cost search
+        \item \textbf{Better heuristic:} If $h_1(n) < h_2(n) < h^*(n)$, then $h_2$ is a better heuristic than $h_1$.
+      \end{itemize}
+
+    \subsection{Hill Climbing Search}
+      Hill climbing search attempts to improve the efficiency of depth-first search. After starting with an arbitrary solution, hill climbing
+      search attempts to improve the solution by changing a single element at a time. This is done by sorting the successors of a node according
+      to their heuristic values, and then adding them to the list to be expanded. These changes are made until no further improvements can be found.
+
+      The rule applied in hill climbing search is that if there is a successor $s$ for node $n$ such that:
+      \begin{itemize}
+        \item $h(s) < h(n)$ and
+        \item $h(s) \leq h(t)$ for all successors $t$ of $n$.
+      \end{itemize}
+      then advance from $n$ to $s$, otherwise halt at $n$.
+
+      Hill climbing search functions like a beam search with $\beta = 1$.
+
 \end{document}
