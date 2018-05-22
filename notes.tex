@@ -314,4 +314,49 @@
 
       Hill climbing search functions like a beam search with $\beta = 1$.
 
+  \section{Game Playing as Search}
+    Games involve playing against an opponent, where search problems involve finding a good move, waiting for an opponent's response, and then
+    repeating. Time is typically limited in each search.
+
+    \subsection{Types of Games}
+      \begin{itemize}
+        \item \textbf{Perfect information:} Each player has complete information on the opponent's state and available choices (e.g chess).
+        \item \textbf{Imperfect information:} Each player does not have complete information on the opponent's state and available choices (e.g. poker).
+      \end{itemize}
+
+    \subsection{Max Min Strategy}
+      In situations with perfect information and two players, a game tree can be expanded that describes all possible moves of the player and opponent
+      in the game.
+
+      The minimax strategy is commonly used in zero sum games where the goal is to minimize the maximum losses that can occur. Given a game tree, an
+      optimal strategy (assuming both players play optimally from each position) can be derived by examining the minimax strategy of each node. Each
+      level in a game tree is assigned alternating MAX (player) and MIN (opponent) values, where MAX is the maximum value of its successors and MIN is the
+      minimum value of its successors.
+
+      \subsubsection{Limiting Depth}
+        In practice, game trees can only be fully expanded for simple games. For more complicated games, a limited depth of the game tree should be explored.
+        In such circumstances, an evaluation function $f(n)$ is used to measure the ``goodness'' of a game state.
+
+      \subsubsection{Properties}
+        \begin{itemize}
+          \item Complete if tree is finite
+          \item Optimal (when playing against optimal opponent)
+          \item Time complexity $O(b^d)$
+          \item Space complexity $O(bd)$ (depth-first exploration)
+        \end{itemize}
+
+    \subsection{$\alpha$-$\beta$ Pruning}
+      Alpha-beta pruning seeks to reduce the number of nodes that need to be generated and evaluated. The key idea behind this algorithm is to avoid
+      processing subtrees that cannot have an effect on the result. Two new parameters are introduced, namely $\alpha$, which is the best value of MAX
+      found so far, and $\beta$, which if the best value of MIN seen so far. Alpha is used in MIN nodes, and is assigned in MAX nodes, and vice versa for
+      beta. The two introduced bounds are:
+      \begin{itemize}
+        \item \textbf{Alpha cutoff:} When value of min position is less than or equal to the alpha-value of its parent, stop generating further successors.
+        \item \textbf{Beta cutoff:} When value of max position is greater than the beta-value of its parent, stop generating further successors.
+      \end{itemize}
+
+      The output of alpha-beta pruning is exactly the same as the output of the minimax algorithm; alpha-beta pruning is purely an efficiency consideration.
+      The time complexity of the minimax algorithm is $O(b^d)$, while the time complexity of alpha-beta pruning is between $O(b^\frac{d}{2})$ and $O(b^d)$
+      depending on the properties of the search tree.
+
 \end{document}
