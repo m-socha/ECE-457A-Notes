@@ -378,4 +378,100 @@
       Trajectory methods are metaheuristic variants of local search that apply memory structure to avoid getting stuck at local minima, and implement an explorative
       strategy that tries to avoid revisiting nodes.
 
+  \section{Tabu Search (TS)}
+    TS is a widely used, general trajectory-based metaheuristic strategy for controlling inner heuristics. TS can be seen as a combination of a local search strategy with a search experience
+    model that is used to escape local minima and implement and explorative strategy.
+
+    \subsection{Local Search}
+      Local search strategies start with an initial feasible solution, after which a series of local modifications are applied. If a modification generates a better solution,
+      then the process is repeated from that node. Two major challenges faced by local search algorithms include:
+      \begin{itemize}
+        \item Can be costly to consider all possible local modifications. 
+        \item Can get stuck in local optimum.
+      \end{itemize}
+
+    \subsection{Basic Ideas}
+      TS attempts to overcome the limitations of local search alone. A key idea behind this is to penalize moves that take a solution back to a previously visited (tabu) state.
+      This can result in non-improving solutions being accepted in order to escape from local optima and eventually find a better solution.
+
+    \subsection{Use of Memory}
+      TS applies ``short-term'' memory structures to store the recency of occurrence of a previous solution to. This is often known as a Tabu list, where the Tabu list length
+      (or Tabu tenure) refers to the number of iterations for which moves are kept. Tabu lists rarely hold complete solutions due to their large memory requirements, and often
+      instead store some related data (e.g. moves used to generate past solutions). When selecting a new neighborhood to explore, neighborhoods outside of the Tabu list are preferred.
+
+      TS can also apply ``long-term'' memory structures to store the frequency of solution components, which can also be used to diversify the search by exploring unvisited
+      areas of the solution space.
+
+    \subsection{Termination Conditions}
+      Sample TS termination conditions include:
+      \begin{itemize}
+        \item No feasible solution in neighborhood of current solution.
+        \item Maximum number of iterations reached.
+        \item Number of iterations since last improvement has crossed an upper bound.
+        \item Some sort of evidence shows that an optimal solution has been obtained.
+      \end{itemize}
+
+    \subsection{Candidates and Aspiration}
+      A candidate list stores the potential solutions in a neighborhood to be examined. This is done by isolating regions of a neighborhood with desirable features, aiming
+      to find a solution more efficiently than by just searching all possible solutions in a neighborhood. At times, it can be desirable to include a move in a candidate list
+      even if it is tabu in order to prevent stagnation. Approaches used to cancel tabus are referred to as aspiration criteria. 
+
+    \subsection{Selecting Tabu Restrictions}
+      Examples of restrictions for picking the next move include:
+      \begin{itemize}
+        \item Not picking the same exchange of positions as in a tabu move.
+        \item Not picking a move that results in a positions that previously appeared in a tabu move.
+      \end{itemize}
+
+    \subsection{Selecting Tabu Tenure}
+      Tabu tenure $T$ can be selected in the following ways:
+      \begin{itemize}
+        \item Statically assigning $T$ to be a constant (as a general rule, $\sqrt{n}$ where $n$ is the problem size.
+        \item Dynamically letting $T$ vary between a $T_{min}$ and $T_{max}$. Dynamic Tabu tenures tend to be better at limiting cycling,
+        though some searches may contain cycles longer than the Tabu tenure.
+      \end{itemize}
+
+    \subsection{Selecting Aspiration Criteria}
+      Aspiration criteria can be selected based on the following strategies:
+      \begin{itemize}
+        \item By default, where a tabu move becomes admissible if it yields a better solution than any found so far.
+        \item By objective, where a tabu move becomes admissible if it yield a solution better than an aspiration value.
+        \item By search direction, where a tabu move becomes admissible if the direction of the search remains constant (e.g. non-improving remains non-improving).
+      \end{itemize}
+
+    \subsection{Intensification}
+      Intensification refers to the process of exploiting a small portion of the search space (e.g. penalizing solutions far from current solution). Intensification
+      can be used to locally optimize a best known solution while trying to preserve the general components of that solution (based on short-term memory).
+
+    \subsection{Diversification}
+      Diversification refers to the process of forcing the search into unexplored areas (e.g. penalizing solutions close to current solution). While Tabu lists can aid
+      in diversification, they often act very locally, and long-term memory known as the ``frequency memory'' is used to store the number of iterations in which certain
+      components always appear in solutions. Diversification strategies can include:
+      \begin{itemize}
+        \item \textbf{Restart diversification}, where components rarely appearing in solutions are forced into new solutions.
+        \item \textbf{Continuous diversification}, where the evaluation of possible moves is biased by a term related to component frequency.
+      \end{itemize}
+
+    \subsection{Adaptation}
+      Adaptation refers to a series of techniques for varying the Tabu tenure. As a general rule, if the Tabu tenure is too small, then cycles in the search are likely,
+      while if it is too big, then many moves could be prevented at each iteration.
+
+      Several difference techniques can be applied to vary to Tabu tenure. One such technique involves randomly selecting a new tenure from a pre-computed range every
+      predetermined number of iterations. Another approach involves setting to tenure to 1 if a best-so-far solution is found, lowering it in an improving phase, and
+      increasing it in a worsening phase. This can be coupled by randomly changing the min and max values of the tenures for each fixed number of moves.
+
+    \subsection{Cooperation}
+      Cooperation can be applied by multiple Tabu searches running concurrently. One such approach involves coordinated searches exchanging information every fixed number
+      of iterations (synchronous communication), where an incoming solution to a search agent can be handled by replacing its own best-so-far (forced diversification),
+      or by replacing its own best-so-far solution only if the incoming solution is better (conditional import). Alternatively, asynchronous communication can be applied
+      where search agents relay their best-so-far results to a central memory. If this best-so-far result if better than the global one, then it replaces the global one.
+      Otherwise, search agents continue using their worse one for a certain number of moves, after which they fetch the solution stored in the central memory. Some variants
+      store multiple solutions in central memory, where a random one is assigned to agents requesting a solution.
+
+      General results from cooperation experiments found that:
+      \begin{itemize}
+        \item Increasing the number of search agents improves the solution up to a certain point.
+        \item Increasing the number of synchronization messages increases the computation time due to message passing overhead.
+        \item Conditional imports are almost always preferable to forced diversification.
+      \end{itemize}
 \end{document}
