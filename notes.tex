@@ -359,4 +359,23 @@
       The time complexity of the minimax algorithm is $O(b^d)$, while the time complexity of alpha-beta pruning is between $O(b^\frac{d}{2})$ and $O(b^d)$
       depending on the properties of the search tree.
 
+  \section{Metaheuristics}
+    Metaheuristics are high-level heuristics designed to select other heuristics to solve a problem. Search algorithms making use of metaheuristics are approximate
+    and usually non-deterministic, and vary from simple local search to complex learning processes.
+
+    \subsection{Common Properties}
+      \begin{itemize}
+        \item Mechanisms to avoid getting trapped in confined areas of search space.
+        \item Not being problem-specific, though may make use of domain-specific knowledge from heuristics controlled by upper-level strategy.
+        \item Search experience (i.e. some representation of search history) to guide the search.
+        \item Hybrid search models where the search identifies neighborhoods where a goal may lie, and then the search is intensified in that area.
+      \end{itemize}
+
+    \subsection{Population-based Methods}
+      Population-based methods are metaheuristic approaches that apply multiple agents to a search space and can handle multiple simultaneous solutions.
+
+    \subsection{Trajectory Methods}
+      Trajectory methods are metaheuristic variants of local search that apply memory structure to avoid getting stuck at local minima, and implement an explorative
+      strategy that tries to avoid revisiting nodes.
+
 \end{document}
