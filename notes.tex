@@ -474,4 +474,78 @@
         \item Increasing the number of synchronization messages increases the computation time due to message passing overhead.
         \item Conditional imports are almost always preferable to forced diversification.
       \end{itemize}
+
+  \section{Simulated Annealing}
+
+    \subsection{Physical Annealing Analogy}
+      Physical annealing involves heating a substance (e.g. a metal) and then letting it cool to increase its ductility and reduce hardness. The goal is to make the molecules
+      in a cooled substances arrange themselves in a low-energy structure, and the properties of this structure are influenced by the temperatures reached and the rate of cooling.
+      A sequence of cooling times and temperatures is referred to as an annealing or cooling schedule.
+
+      Simulated annealing is a search algorithm that mimics the physical annealing process. First introduced in 1953, simulated annealing leads to a random walk between
+      solutions that, under certain conditions, is guaranteed to sample from the probability distributions of an ideal equilibrium state. Further contributions were made in 1983
+      and 1985 that applied simulated annealing to finding approximations of global optima in large search spaces.
+
+    \subsection{Basics of Simulated Annealing}
+      Simulated annealing search algorithms start with some arbitrary initial solution, ``temperature'', and temperature reduction function. Then until some sort of stopping condition
+      is satisfied, the algorithm repeatedly picks new potential solutions from a neighborhood $N(s)$. If the solution has a lower cost than the previously found one, then it is accepted.
+      Otherwise, the solution is accepted only if a random variable $x$ in the range $(0, 1)$ is lesser than $e^{\frac{\delta c}{t}}$, where $\delta c$ is the increase in cost and $t$ is
+      the temperature. After each step, the temperature reduction function is applied.
+
+    \subsection{Strategy}
+      The general strategy of simulated annealing is to encourage exploring more of the search space at the beginning when the temperature is high. Later on, once the algorithm converges
+      on an approximation of the global optimum, accepting worse solutions to facilitate exploration becomes less probable. Lower temperatures as well as higher changes in cost lower the
+      probability of a particular change being accepted as a new solution.
+
+    \subsection{Annealing Schedule}
+      An annealing schedule provides a mapping from time to temperature, and is determined by a search's initial temperature, final temperature, rules for decrementing temperatures, and the
+      number of search iterations at each temperature.
+
+      \subsubsection{Initial Temperature}
+        The initial temperature should be high enough to allow exploration to any part of the search space. However, making the initial temperature too hot will make the search behave almost
+        completely randomly. The maximum change of a cost function should be considered when setting the initial temperature, which as a general rule, should accept around 60\% of worse
+        solutions.
+
+      \subsubsection{Final Temperature}
+        A final temperature should be quite low but does not necessarily have to reach 0. A search using simulated annealing can be stopped once no better moves are being found and no
+        worse moves are being accepted.
+
+      \subsubsection{Temperature Decrement Rules}
+        Two basic techniques for decrementing temperature are though a linear ($t = t - \alpha$) and a geometric ($t = t \cdot \alpha$) function. For geometric decrement, the recommended
+        value of $\alpha$ is between 0.8 and 0.99. Alternatively, an technique that facilitates slow decrease ($t = \frac{t}{1 - \beta t}$) can be applied.
+
+      \subsubsection{Temperature Iterations}
+        Ideally, enough iterations should be performed for a search to become stable at each tested temperature. Large population sizes are a common reason for increasing this number
+        of iterations, while slowly decreasing temperatures are a common reason for decreasing the number of iterations. A constant value of iterations is commonly used, though
+        it is common to increase the number of iterations as the search increases to fully explore local optima.
+
+    \subsection{Convergence of Simulated Annealing}
+      Simulated annealing is guaranteed to eventually converge to a solution at a constant temperature, assuming some sequence of moves leads to the goal state. This becomes much
+      more nuanced when temperature is not constant. where convergence can still be guaranteed but only under conditions that result in very slow temperature reduction and an
+      exponential increase in the number of iterations at each temperature. Hence, this convergence theory is not commonly used in practice, though it is worth noting that
+      simulated annealing is better backed theoretically than many other heuristic methods.
+
+    \subsection{Adaptation}
+      Adaptation in simulated annealing refers to adapting the critical parameters of the algorithm, including the initial temperature, cooling schedule, and number of iterations.
+
+      \subsubsection{Initial Temperature}
+        Finding the right temperature is very problem-specific, and different search algorithms can be applied in finding this temperature.
+
+      \subsubsection{Cooling Schedule}
+        Some cooling schedules require that only the cooling rate $\alpha$ is specified, and the remainder of parameters are automatically determined using a linear random combination
+        of previously accepted states and parameters to estimate new steps and parameters.
+
+      \subsubsection{Probability of Acceptance}
+        Some attempted adaptations concerning the probability of acceptance include using a lookup table for the relevant calculations (to decrease computation time) or using a different,
+        non-exponential probability formula.
+
+      \subsubsection{Cost Function}
+        Cost functions that return similar values for many different states tend to not lead to effective search. As an alternative, a cost function can have a penalty term associated with
+        certain types of states, and the weighting of these penalty terms can vary dynamically.
+
+    \subsection{Cooperation}
+      Cooperative simulated annealing involves multiple concurrent runs of a simulated annealing search algorithm on a search space. Potential solutions are produced by somehow combining
+      the value of a run with the value of a random previous run of the algorithm. This exchange of information from other solutions is known as cooperative transition, and is a concept
+      borrowed from genetic algorithms.
+
 \end{document}
