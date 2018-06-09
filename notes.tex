@@ -551,4 +551,19 @@
       the value of a run with the value of a random previous run of the algorithm. This exchange of information from other solutions is known as cooperative transition, and is a concept
       borrowed from genetic algorithms.
 
+  \section{Evolutionary Algorithms}
+    Evolutionary computing forms a category of population-based meta-heuristic methods whose behavior is inspired by biological evolution. These algorithms feature a population of
+    individuals competing for limited resources, with the ``fitter'' individuals being used as seeds to form future generations. Over time, this population rises in overall fitness
+    due to the principles of natural selection. Evolutionary algorithms are stochastic, with variation operators (crossover and mutation) propagating changes to new generations.
+
+    \subsection{Active Information}
+      Unless a search algorithm takes advantage of problem-specific information about a search target of search space, its average performance is that of random search. Three measures of
+      information that can increase the effectiveness of a search can be categorized as:
+      \begin{itemize}
+        \item \textbf{Endogeneous information}, which measures the difficulty of finding a target through random search.
+        \item \textbf{Exogeneous information}, which measures the difficulty of finding a target once problem-specific information is applied.
+        \item \textbf{Active information}, which is the difference between exogenous and endogeneous information (i.e. measures the contribution of problem-specific information in solving
+          a problem).
+      \end{itemize}
+
 \end{document}
