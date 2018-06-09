@@ -640,4 +640,64 @@
         With real-valued chromosomes, mutations can be applied by assigning a uniform random value between some lower and upper bound to a gene. Some variants on this technique also
         add some noise (e.g. from a Gaussian distribution) to this number.
 
+    \subsection{Permutation Genetic Algorithms}
+      Permutation problems are problems that deal with finding a sequence in which elements are arranged. There are two main classes of such problems:
+      \begin{itemize}
+        \item Problems that deal with adjacency of elements (e.g. Travelling Salesman Problem).
+        \item Problems that deal with the overall order of elements (e.g. Job Shop Scheduling).
+      \end{itemize}
+
+      \subsubsection{Crossover}
+        Previously defined crossover operations often result in inadmissible solutions (e.g. crossing [1,2,3] with [3,2,1] can result in duplicates of one element in an arrangement).
+
+        Below are some crossover operations than can be applied to adjacency-based problems:
+        \begin{itemize}
+          \item \textbf{Partially Mapped Crossover (PMX)}, which follows the approach below to generate a child from parents P1 and P2:
+            \begin{enumerate}
+              \item Copy a random segment from P1.
+              \item Starting from the first crossover point, look for elements in P2 that have not been copied.
+              \item For each of these elements $i$, look in the offspring to see which element $j$ has been copied in its place.
+              \item Place $i$ in the position occupied by $j$ in P2. If the place occupied by $j$ in P2 has already been filled in by $k$ put $i$ in the position occupied by $k$ in P2.
+              \item The rest of the offspring can be filled in from P2.
+            \end{enumerate}
+          \item \textbf{Edge crossovers}
+        \end{itemize}
+
+        Below are some crossover operations than can be applied to order-based problems:
+        \begin{itemize}
+          \item \textbf{Order 1 Crossover}, which follows the approach below to generate children:
+            \begin{enumerate}
+              \item Choose arbitrary part from P1.
+              \item Copy this part to first child.
+              \item Starting from the right of the cut point of the copied part, copy the elements in the order of P2 that are not yet in the child, wrapping around if needed.
+            \end{enumerate}
+          \item \textbf{Cycle Crossover}, which follows the approach below to generate children:
+            \begin{enumerate}
+              \item Form a cycle of alleles from P1 by:
+                \begin{enumerate}
+                  \item Start with the first allele of P1.
+                  \item Go to the position in P1 that has the value of the corresponding allele in P2.
+                  \item Add this allele to the cycle.
+                  \item Repeat this cycle formation until the first allele of P1 is arrived at.
+                \end{enumerate}
+              \item Put alleles of the cycle in the in the positions from P1.
+              \item Repeat steps above for second parent.
+            \end{enumerate}
+        \end{itemize}
+
+      \subsubsection{Mutation}
+        Some previously defined mutation operators may lead to inadmissible solutions for permutation problems. Below are some mutations that can be applied:
+        \begin{itemize}
+          \item \textbf{Insert mutations}, which pick two elements, and move one to immediately follow the other, shifting any elements if necessary (i.e. as in
+            insertion sort)
+          \item \textbf{Swap mutations}, which pick two elements and swap their order.
+          \item \textbf{Inversion mutations}, which pick two genes and reverse the subsequence between them.
+          \item \textbf{Scramble mutations}, which pick two genes and find a random permutation of the genes between them.
+        \end{itemize}
+
+    \subsection{Advantages and Disadvantages}
+      A few advantages of GAs include that they are highly multimodal, can be applied to discrete and continuous problems, can support high-dimensional
+      problems, and support non-linear dependencies between parameters. A few disadvantages of GAs include premature conversion, poor choice of genetic
+      operators, and biased or incomplete representations.
+
 \end{document}
