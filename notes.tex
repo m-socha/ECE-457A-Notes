@@ -566,4 +566,61 @@
           a problem).
       \end{itemize}
 
+  \section{Genetic Algorithms}
+    Genetic algorithms are a class of evolutionary algorithms that operate by maintaining a population of candidate solutions and iteratively applying a set of stochastic operators,
+    namely selection, reproduction, and mutation. These algorithms are inspired by Darwin's theory of natural selection, with the population eventually moving towards fitter solutions.
+
+    \subsection{Simple Genetic Algorithms (SGAs)}
+      The idea of genetic algorithms was first introduced by John Henry Hollard in 1975. The first described genetic algorithms are now known as simple genetic algorithms (SGAs), also
+      known as classical or canonical SGAs.
+
+      SGAs start by initializing a population with random candidate solutions. Then, parents are selected, after which a new generation is formed through the genetic operations of
+      recombination and mutation. This generation replaces the parent generation, and the breeding cycle repeats until some termination criteria is reached. Example termination
+      criteria include the search going passed a certain number of iterations, no improvement in the solution for a certain number of iterations, or the fitness of the solution
+      passing a certain threshold.
+
+      \subsubsection{Representation}
+        SGAs represent candidate solutions as binary strings, which are often referred to as chromosomes of genotypes. Each binary digit is considered to be a separate gene, and
+        the ordering of the genes can have important implications. This, the mapping from a problem's parameter domain to this binary representation is one of the most important
+        factors for the performance of an SGA algorithm.
+
+        Binary representations of a problem often apply gray coding, which means that small differences in the underlying solution result in small changes in the binary
+        representation. Some implementations use representations other than binary strings, including integers or floating-point numbers.
+
+      \subsubsection{Selection}
+        Individuals are selected to be parents in the future generation with a probability proportional to their fitness (i.e. proportional selection). Based on this principle,
+        $N$ parents can be selected from a population of $N$ solutions. The key idea behind this selection is to facilitate an increase in the fitness of future generations while
+        also maintaining an element of randomness.
+
+        A major limitation of fitness-proportional selection (FPS) is that it does not provide guarantees on the distribution of selected parents, since each selection is done
+        independently. An alternative is stochastic universal sampling, which can be imagined as spinning a roulette wheel with $n$ evenly spaced arms to find $n$ values.
+
+        Some other common problems with FPS algorithms are premature convergence (e.g. one highly fit member dominating a population), and a lack of selection pressure at the end
+        of runs with similar fitness. Some attempts to overcome these problems include selection proportional to rank rather than absolute fitness, and tournament selection where
+        random subsets of individuals are found, and the fittest members of these subsets are selected.
+
+      \subsubsection{Crossover}
+        Crossover/recombination is applied between two parents with a probability of $P_c$, which is typically in the range (0.6, 0.9). If no crossover takes place, the two parents
+        are copied to two offspring unmodified. The following types of crossovers can be applied:
+        \begin{itemize}
+          \item \textbf{1-point crossover}, where a random point is chosen on the two parents, and the two children are formed by exchanging the tails this point divides.
+          \item \textbf{n-point crossover}, which is a generalization of 1-point crossovers where n points are chosen on the two parents.
+          \item \textbf{Uniform crossover}, where each gene has an independent $\frac{1}{2}$ chance of undergoing recombination, which makes inheritance independent of position.
+        \end{itemize}
+
+      \subsubsection{Mutation}
+        After recombination, each gene can be altered with a probability of $p_m$. $p_m$ is typically between $\frac{1}{popsize}$ and $\frac{1}{chromosomelength}$. Crossovers
+        tends to result in large changes in a population, while mutation results in small ones. Thus, crossovers are considered to be explorative, making a big jump to a
+        possibly unexplored area between the two parent solutions, while mutations are exploitative, introducing small amounts of new information to further explore near an
+        existing solution.
+
+      \subsubsection{Population Models}
+        SGA typically applies a generational GA model (GGA), where individuals survive for exactly one generation before they are replaced by offspring. An alternative is a
+        steady-state GA model (SSGA), where part of a population is replaced by offspring. The proportion of the population replaced between successive generations is known as a
+        generational gap ($1$ for GGA, and typically $\frac{1}{popsize}$ for SSGA).
+
+        The process of selecting individuals from parents and offspring to make up the next generation is known as survivor selection. Common approaches for survivor selection
+        include age-based (e.g. delete oldest) and fitness-based (e.g. keep best, delete worst) selection.
+
+
 \end{document}
