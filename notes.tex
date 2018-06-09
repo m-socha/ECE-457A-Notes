@@ -622,5 +622,22 @@
         The process of selecting individuals from parents and offspring to make up the next generation is known as survivor selection. Common approaches for survivor selection
         include age-based (e.g. delete oldest) and fitness-based (e.g. keep best, delete worst) selection.
 
+    \subsection{Real-Valued Genetic Algorithms}
+      It is impractical to map many problems with real-values parameters to binary representations. Although real-valued GAs are similar to the SGAs discussed above they can
+      differ as described below:
+
+      \subsubsection{Crossover}
+        It is possible to still apply discrete crossover techniques as done for binary chromosomes. However, real-valued chromosomes open up the possibility for the following
+        intermediate crossovers:
+        \begin{itemize}
+          \item \textbf{Single arithmetic crossover}, where for a single parent gene pair $x$ and $y$, one child's gene becomes $\alpha x + (1 - \alpha) y$, and the reverse for the other child. 
+          \item \textbf{Simple arithmetic crossover}, where for each parent gene pair $x$ and $y$, after a certain gene, one child's gene becomes $\alpha x + (1 - \alpha) y$, and the reverse
+            for the other child. 
+          \item \textbf{Whole arithmetic crossover}, where for each parent gene pair $x$ and $y$, one child's gene becomes $\alpha x + (1 - \alpha) y$, and the reverse for the other child.
+        \end{itemize}
+
+      \subsubsection{Mutation}
+        With real-valued chromosomes, mutations can be applied by assigning a uniform random value between some lower and upper bound to a gene. Some variants on this technique also
+        add some noise (e.g. from a Gaussian distribution) to this number.
 
 \end{document}
