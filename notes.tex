@@ -167,7 +167,7 @@
       on a fringe to be expanded.
 
     \subsection{Uninformed vs Informed Search}
-      Uninformed search algorithms do not have any idea of the direction of the goal node, any simply expand nodes until they
+      Uninformed search algorithms do not have any idea of the direction of the goal node, and simply expand nodes until they
       reach the goal. Informed search algorithms apply some domain knowledge to determine the general direction of goal nodes.
       These informed algorithms are also known as ``heuristic search'' algorithms.
 
@@ -241,7 +241,7 @@
 
       A heuristic function $h(n)$ can be used to estimate the ``goodness'' of node n. In general:
       \begin{itemize}
-        \item $h(n) \geq 0 \forall n$
+        \item $\forall n, h(n) \geq 0$
         \item $h(n) = 0$ means n is a goal node.
         \item $h(n) = \infty$ means n is a dead end that does not lead to a goal.
       \end{itemize}
