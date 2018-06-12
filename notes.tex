@@ -44,6 +44,8 @@
         \item Apply the above ideas to solve various (often ill-structured) continuous and discrete problems
       \end{itemize}
 
+  \newpage
+
   \section{Introduction}
 
     \subsection{What is Artificial Intelligence (AI)?}
@@ -104,6 +106,8 @@
       Adaptive algorithms are able to change their behavior as they are run. Cooperative algorithms algorithms work
       together to solve a joint problem, communicating either directly or indirectly with one another.
 
+  \newpage
+
   \section{Search Problem Formulation}
     The first step in solving a search problem lies in formulation. Sources of potential complexity in formalizing and
     solving real-world search problems include multimodality, lack of a mathematical model, non-differentiability, and
@@ -149,6 +153,8 @@
         \item \textbf{Time complexity:} How many nodes generated
         \item \textbf{Space complexity:} Maximum number of nodes stored in memory
       \end{itemize}
+
+  \newpage
 
   \section{Graph Search Algorithms}
 
@@ -230,6 +236,8 @@
           \item Time complexity $O(b^d)$, note that $m$ may be much larger than $d$.
           \item Space complexity $O(bd)$
         \end{itemize}
+
+  \newpage
 
   \section{Informed Search Strategies}
     Informed search algorithms apply domain knowledge in a problem to search the ``most promising'' branches first. This can lead to
@@ -317,6 +325,8 @@
 
       Hill climbing search functions like a beam search with $\beta = 1$.
 
+  \newpage
+
   \section{Game Playing as Search}
     Games involve playing against an opponent, where search problems involve finding a good move, waiting for an opponent's response, and then
     repeating. Time is typically limited in each search.
@@ -362,6 +372,8 @@
       The time complexity of the minimax algorithm is $O(b^d)$, while the time complexity of alpha-beta pruning is between $O(b^\frac{d}{2})$ and $O(b^d)$
       depending on the properties of the search tree.
 
+  \newpage
+
   \section{Metaheuristics}
     Metaheuristics are high-level heuristics designed to select other heuristics to solve a problem. Search algorithms making use of metaheuristics are approximate
     and usually non-deterministic, and vary from simple local search to complex learning processes.
@@ -380,6 +392,8 @@
     \subsection{Trajectory Methods}
       Trajectory methods are metaheuristic variants of local search that apply memory structure to avoid getting stuck at local minima, and implement an explorative
       strategy that tries to avoid revisiting nodes.
+
+  \newpage
 
   \section{Tabu Search (TS)}
     TS is a widely used, general trajectory-based metaheuristic strategy for controlling inner heuristics. TS can be seen as a combination of a local search strategy with a search experience
@@ -478,6 +492,8 @@
         \item Conditional imports are almost always preferable to forced diversification.
       \end{itemize}
 
+  \newpage
+
   \section{Simulated Annealing}
 
     \subsection{Physical Annealing Analogy}
@@ -551,6 +567,8 @@
       the value of a run with the value of a random previous run of the algorithm. This exchange of information from other solutions is known as cooperative transition, and is a concept
       borrowed from genetic algorithms.
 
+  \newpage
+
   \section{Evolutionary Algorithms}
     Evolutionary computing forms a category of population-based meta-heuristic methods whose behavior is inspired by biological evolution. These algorithms feature a population of
     individuals competing for limited resources, with the ``fitter'' individuals being used as seeds to form future generations. Over time, this population rises in overall fitness
@@ -565,6 +583,8 @@
         \item \textbf{Active information}, which is the difference between exogenous and endogeneous information (i.e. measures the contribution of problem-specific information in solving
           a problem).
       \end{itemize}
+
+  \newpage
 
   \section{Genetic Algorithms}
     Genetic algorithms are a class of evolutionary algorithms that operate by maintaining a population of candidate solutions and iteratively applying a set of stochastic operators,
