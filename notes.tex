@@ -508,7 +508,7 @@
     \subsection{Basics of Simulated Annealing}
       Simulated annealing search algorithms start with some arbitrary initial solution, ``temperature'', and temperature reduction function. Then until some sort of stopping condition
       is satisfied, the algorithm repeatedly picks new potential solutions from a neighborhood $N(s)$. If the solution has a lower cost than the previously found one, then it is accepted.
-      Otherwise, the solution is accepted only if a random variable $x$ in the range $(0, 1)$ is lesser than $e^{\frac{\delta c}{t}}$, where $\delta c$ is the increase in cost and $t$ is
+      Otherwise, the solution is accepted only if a random variable $x$ in the range $(0, 1)$ is lesser than $e^{- \frac{\Delta c}{t}}$, where $\Delta c$ is the increase in cost and $t$ is
       the temperature. After each step, the temperature reduction function is applied.
 
     \subsection{Strategy}
