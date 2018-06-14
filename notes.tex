@@ -167,7 +167,7 @@
         \item \textbf{Node:} Represents a state in a search problem
         \item \textbf{Edge:} Represents a transition between states
         \item \textbf{Branching factor (b):} Maximum number of child nodes extending from a parent node
-        \item \textbf{Maximum depth (m):} Number edges in the shortest path from the root node to the furthest node.
+        \item \textbf{Maximum depth (m):} Number of edges in the shortest path from the root node to the furthest node.
         Variable $d$ is used to represent the depth of the solution.
       \end{itemize}
 
@@ -544,7 +544,7 @@
 
     \subsection{Convergence of Simulated Annealing}
       Simulated annealing is guaranteed to eventually converge to a solution at a constant temperature, assuming some sequence of moves leads to the goal state. This becomes much
-      more nuanced when temperature is not constant. where convergence can still be guaranteed but only under conditions that result in very slow temperature reduction and an
+      more nuanced when temperature is not constant, where convergence can still be guaranteed but only under conditions that result in very slow temperature reduction and an
       exponential increase in the number of iterations at each temperature. Hence, this convergence theory is not commonly used in practice, though it is worth noting that
       simulated annealing is better backed theoretically than many other heuristic methods.
 
