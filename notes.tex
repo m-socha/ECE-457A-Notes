@@ -741,6 +741,38 @@
             (i.e. selection, crossover and mutation).
         \end{itemize}
 
+    \subsection{Parallel Genetic Algorithms}
+
+      \subsubsection{Master-Slave Approach}
+        In master-slave approaches, selection and mating are performed by a single master processor. However, fitness evaluation is distributed among
+        several slave processors. Master-slave GAs are also known as global parallel GAs.
+
+      \subsubsection{Fine-Grained Genetic Algorithms}
+        In fine-grained GAs, selection and mating occurs in local (not necessarily disjunct) neighborhoods. This technique can be effective for handling
+        computations on massively parallel computers.
+
+      \subsubsection{Coarse-Grained Genetic Algorithms}
+        Coarse-grained genetic algorithms feature multiple populations evolving in parallel. Selection and mating is limited to individuals within the
+        same population, and different populations may periodically exchange individuals. These are also known as distributed or multi-deme GAs, and
+        depend on many factors including:
+        \begin{itemize}
+          \item \textbf{Topology}, which controls which populations are connected to one another. Individuals may only migrate between connected populations.
+          \item \textbf{Migration policy}, which determines how migrating individuals are sent and received. Sample policies include exchanging a random
+            individual in one population for a random individual in another population, or exchanging the best individual in one generation for the worst
+            individual in another.
+          \item \textbf{Migration frequency}, which controls when communication between populations occurs. This communication may be synchronous, where
+            migrations occur every pre-determined number of generations, or asynchronous, where migrations are triggered by a certain event.
+          \item \textbf{Migration rate}, which refers to the number of individuals migrating from one population to another at every communication step.
+            A low number of migrating individuals may lead to the populations acting almost completely independently, while a high number of migrating
+            individuals may lead to fast convergence to sub-optimal solutions.
+        \end{itemize}
+
+      \subsubsection{Cooperative Genetic Algorithms}
+        Cooperative GAs tend to contain multiple populations where the fitness of an individual in one population depends on the fitness of individuals
+        in other population. A commonly applied strategy is to have different populations optimize different variables of a problem, where the fitness
+        of an individual is determined by its value and the value of the best individuals in other populations. This strategy tends to perform best when
+        the different variables are independent of one another.
+
     \subsection{Advantages and Disadvantages}
       A few advantages of GAs include that they are highly multimodal, can be applied to discrete and continuous problems, can support high-dimensional
       problems, and support non-linear dependencies between parameters. A few disadvantages of GAs include premature conversion, poor choice of genetic
