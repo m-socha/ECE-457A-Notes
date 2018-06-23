@@ -723,6 +723,24 @@
           \item \textbf{Scramble mutations}, which pick two genes and find a random permutation of the genes between them.
         \end{itemize}
 
+    \subsection{Adaptation}
+
+      \subsubsection{Parameter Tuning}
+        Much of the work in applying a genetic algorithm to solve a problem often lies in parameter tuning, which refers to finding suitable values for
+        different algorithm parameters. However, parameter tuning is often a lengthy process, since parameters are often not independent from one another,
+        and different parameter values may be optimal at different stages of the search process.
+
+      \subsubsection{Parameter Control}
+        Various parameter control techniques can be applied to set the values of GA algorithm parameters during runtime. Although not necessarily optimal,
+        these techniques tend to be far more efficient than parameter tuning and can be applied to a wide range of problems. The main types of parameter control
+        techniques are:
+        \begin{itemize}
+          \item \textbf{Deterministic:} Parameters are controlled as a function of the generation number; search progress is not taken into account.
+          \item \textbf{Adaptive:} Parameters are controlled using the current state of the search combined with some heuristics.
+          \item \textbf{Self-adaptive:} Parameters are incorporated into chromosomes and are controlled through similar processes as the problem population
+            (i.e. selection, crossover and mutation).
+        \end{itemize}
+
     \subsection{Advantages and Disadvantages}
       A few advantages of GAs include that they are highly multimodal, can be applied to discrete and continuous problems, can support high-dimensional
       problems, and support non-linear dependencies between parameters. A few disadvantages of GAs include premature conversion, poor choice of genetic
