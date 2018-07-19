@@ -850,7 +850,8 @@
         At each node $i$, with adjacent nodes $N_i$, an ant can move to an adjacent node $j$ with the following probability:
         $$\frac{\frac{\uptau_{i,j}^\alpha}{d_{i,j}^\beta}}{\sum_{n \in N_i} \frac{\uptau_{i,n}^\alpha}{d_{i,n}^\beta}}$$
 
-        $\alpha$ and $\beta$ balance the local and global search ability respectively.
+        $\alpha$ and $\beta$ balance the local and global search ability respectively. More generally, a problem heuristic function can be used instead of the
+        inverse of distance.
 
       \subsubsection{Pheromone Evaporation and Update}
         In each step the pheromone trail is evaporated (i.e. $\uptau = \uptau \cdot (1 - \rho)$). Ants also increase the amount of pheromone on the trail they choose
