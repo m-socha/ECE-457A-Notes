@@ -898,6 +898,24 @@
       ACO is often a good fit for combinatorial optimization problems. ACO is typically applied to discrete problems, though there are variants
       for handling continuous optimization problems.
 
+    \subsection{Adaptation}
+
+      \subsubsection{ACSGA-TSP}
+        The idea behind the ACSGA-TSP adaptation approach is to have a genetic algorithm running on top of ACS to attempt to optimize its parameter values.
+        Each ant has certain parameters (e.g. $\rho$, $\beta$) encoded into a chromosome. New generations are formed by crossing over the best-performing
+        ants.
+
+      \subsubsection{Near Parameter Free ACS}
+        The idea behind near parameter free ACS is to apply an ant approach to optimize ant parameters.
+
+    \subsection{Cooperation}
+      Heterogeneous cooperation approaches involve ants in different colonies having different behavior. This can be used, for instance, to optimize for
+      different criteria of a solution.
+
+      Homogeneous cooperation approaches involve ants in different colonies having similar behavior. Exchange of information can take place in a similar
+      way to that of genetic algorithms. Homogeneous cooperation implementations can be course-grained, where each process holds a single ant, or
+      fine-grained, where each process holds a colony. An effective version of homogeneous cooperation is a circular exchange of locally best solutions.
+
     \subsection{Advantages and Disadvantages}
       A few advantages of ACO are:
       \begin{itemize}
