@@ -1,6 +1,7 @@
 \documentclass[12pt,titlepage]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{parskip}
+\usepackage{upgreek}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -822,5 +823,60 @@
         \item \textbf{Stability:} The swarm should not rapidly alter its behavior in response to all environmental changes.
         \item \textbf{Adaptability:} The swarm should be willing to change its behavior when it is worth the computational price.
       \end{itemize}
+
+  \newpage
+
+  \section{Ant Colony Optimization}
+
+    \subsection{Background}
+      Ant colony optimization (ACO) is a search technique based on the swarm intelligence of ants. Ants interact with one another through stigmergy, meaning
+      that individual ants can make changes to their environment to be picked up by other ants.
+      
+      Ants do this by forming trails with substances known as pheromone. Ants tend to follow paths with higher pheromone concentrations.
+      Pheromone also evaporates over time, so more recent pheromone deposits have a greater influence than older ones.
+      
+      Ants can use this mechanism to find the shortest path to a destination. If multiple paths are available, ants will pick their initial paths randomly.
+      Ants that take the shorter path will return faster, so their trail will have more unevaporated pheromone. This makes other ants more likely to pick
+      this trail, and eventually, they converge on this shortest path.
+
+    \subsection{Basic Algorithm}
+      Let $G = (N,E)$ denote a graph where $N$ is a set of nodes and $E$ is a set of edges. Each edge $(i,j)$ has a length denoted as $d_{i,j}$, and a
+      value $\uptau_{i,j}$ that denotes the amount of pheromone.
+
+      \subsubsection{Initialization}
+        Initially, a small amount of pheromone is placed on all edges, and a group of $m$ ants is placed at a source node.
+
+      \subsubsection{Transition Rule}
+        At each node $i$, with adjacent nodes $N_i$, an ant can move to an adjacent node $j$ with the following probability:
+        $$\frac{\frac{\uptau_{i,j}^\alpha}{d_{i,j}^\beta}}{\sum_{n \in N_i} \frac{\uptau_{i,n}^\alpha}{d_{i,n}^\beta}}$$
+
+        $\alpha$ and $\beta$ balance the local and global search ability respectively.
+
+      \subsubsection{Pheromone Evaporation and Update}
+        In each step the pheromone trail is evaporated (i.e. $\uptau = \uptau \cdot (1 - \rho)$). Ants also increase the amount of pheromone on the trail they choose
+        (i.e. $\uptau = \uptau + \Delta \uptau$), a process known as step-by-step pheromone update. $\Delta \uptau$ can be chosen in various ways, including:
+        \begin{itemize}
+          \item \textbf{Ant density model}, where a constant value is added.
+          \item \textbf{Ant quality model}, where a constant is divided by the edge length.
+          \item \textbf{Online delayed model}, where an ant first builds a solution, then traces its path backwards and adds pheromone based on the solution quality.
+            This is applied in extensions of ACO known an ant system algorithms (AS).
+        \end{itemize}
+
+      \subsubsection{Termination Criteria}
+        The above step of evaporating and then adding pheromones is repeated until termination conditions are met. Common termination conditions include:
+        \begin{itemize}
+          \item Maximum number of iterations reached.
+          \item Good enough solution reached.
+          \item Stagnation occurs (i.e. almost all ants follow same path).
+        \end{itemize}
+
+      \subsubsection{Tunable Parameters}
+        Tunable parameters for ACO include:
+        \begin{itemize}
+          \item Number of ants
+          \item Max number of iterations
+          \item Initial pheromone
+          \item Pheromone delay parameters (i.e. $\rho$)
+        \end{itemize}
 
 \end{document}
