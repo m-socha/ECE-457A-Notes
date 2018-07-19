@@ -879,4 +879,18 @@
           \item Pheromone delay parameters (i.e. $\rho$)
         \end{itemize}
 
+    \subsection{Extensions}
+
+      \subsubsection{Ant Colony System Algorithm}
+        The ant colony system (ACS) algorithm features the following extensions on ACO:
+        \begin{itemize}
+          \item The transition rules sometimes just chooses the best path (i.e. acts greedily) instead of applying probabilistic selection.
+          \item Pheromone update is only based on the best solution (i.e. highest increase in $\uptau$ either globally or in iteration).
+        \end{itemize}
+
+      \subsubsection{Max-Min Ant System Algorithm}
+        This max-min ant system algorithm (MMAS) is an extension that restricts pheromone values within a range. This extension
+        mitigates stagnation, since the max and min pheromone values can be adjusted to favor exploration over exploitation during early
+        phases of the search.
+
 \end{document}
